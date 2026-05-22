@@ -57,7 +57,6 @@ public class RegistroNotas {
     }
 
     public boolean esNotaAprobatoria(double nota) {
-        validarRangoNota(nota);
         return nota >= NOTA_APROBATORIA;
     }
 
