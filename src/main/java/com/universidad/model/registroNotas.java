@@ -1,5 +1,7 @@
 package com.universidad.model;
 
+import com.universidad.exception.NotaDuplicadaException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,7 @@ public class RegistroNotas {
     public void registrarNota(String estudiante, String materia, double nota, String semestre) {
         validarParametrosNoNulos(estudiante, materia, semestre);
         validarRangoNota(nota);
+        validarNotaDuplicada(estudiante, materia, semestre);
 
         notas.add(new Nota(estudiante, materia, nota, semestre));
     }
@@ -38,6 +41,18 @@ public class RegistroNotas {
     private void validarRangoNota(double nota) {
         if (nota < NOTA_MINIMA || nota > NOTA_MAXIMA) {
             throw new IllegalArgumentException(MENSAJE_ERROR_RANGO);
+        }
+    }
+
+    private void validarNotaDuplicada(String estudiante, String materia, String semestre) {
+        // Requerimiento 4: No permitir notas duplicadas en misma materia y semestre
+        boolean existe = notas.stream()
+                .anyMatch(nota -> nota.estudiante.equals(estudiante)
+                        && nota.materia.equals(materia)
+                        && nota.semestre.equals(semestre));
+
+        if (existe) {
+            throw new NotaDuplicadaException("Ya existe una nota registrada para esta materia en este semestre");
         }
     }
 
