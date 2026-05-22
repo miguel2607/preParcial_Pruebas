@@ -93,4 +93,40 @@ class RegistroNotasTest {
 
         assertTrue(esAprobada, "Una nota de 4.5 debe ser aprobatoria");
     }
+
+    // ========== REQUERIMIENTO 3: Calcular promedio de estudiante ==========
+
+    @Test
+    @DisplayName("CP-009: Debe calcular promedio con múltiples notas (4.0, 3.5, 4.5 = 4.0)")
+    void debeCalcularPromedioConMultiplesNotas() {
+        RegistroNotas registro = new RegistroNotas();
+        registro.registrarNota("Laura Martínez", "Matemáticas", 4.0, "2024-1");
+        registro.registrarNota("Laura Martínez", "Física", 3.5, "2024-1");
+        registro.registrarNota("Laura Martínez", "Química", 4.5, "2024-1");
+
+        double promedio = registro.calcularPromedio("Laura Martínez");
+
+        assertEquals(4.0, promedio, 0.01, "El promedio de 4.0, 3.5 y 4.5 debe ser 4.0");
+    }
+
+    @Test
+    @DisplayName("CP-010: Debe manejar estudiante sin notas registradas")
+    void debeManejarEstudianteSinNotas() {
+        RegistroNotas registro = new RegistroNotas();
+
+        double promedio = registro.calcularPromedio("Roberto Sánchez");
+
+        assertEquals(0.0, promedio, 0.01, "El promedio sin notas debe ser 0.0");
+    }
+
+    @Test
+    @DisplayName("CP-011: Debe calcular promedio con una sola nota (3.8)")
+    void debeCalcularPromedioConUnaSolaNota() {
+        RegistroNotas registro = new RegistroNotas();
+        registro.registrarNota("Carmen Díaz", "Cálculo", 3.8, "2024-1");
+
+        double promedio = registro.calcularPromedio("Carmen Díaz");
+
+        assertEquals(3.8, promedio, 0.01, "El promedio con una sola nota debe ser esa nota");
+    }
 }

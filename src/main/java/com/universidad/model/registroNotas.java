@@ -46,6 +46,11 @@ public class RegistroNotas {
         return nota >= NOTA_APROBATORIA;
     }
 
+    public double calcularPromedio(String estudiante) {
+        // Sin implementación - Fase RED
+        throw new UnsupportedOperationException("Método no implementado");
+    }
+
     // Clase interna para almacenar la información de una nota
     private static class Nota {
         private final String estudiante;
