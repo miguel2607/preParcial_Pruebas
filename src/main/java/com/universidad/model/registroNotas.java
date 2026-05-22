@@ -7,6 +7,7 @@ public class RegistroNotas {
 
     private static final double NOTA_MINIMA = 0.0;
     private static final double NOTA_MAXIMA = 5.0;
+    private static final double NOTA_APROBATORIA = 3.0;
     private static final String MENSAJE_ERROR_RANGO = "La nota debe estar entre 0.0 y 5.0";
 
     private final List<Nota> notas;
@@ -41,8 +42,8 @@ public class RegistroNotas {
     }
 
     public boolean esNotaAprobatoria(double nota) {
-        // Requerimiento 2: Aprueba con nota >= 3.0
-        return nota >= 3.0;
+        validarRangoNota(nota);
+        return nota >= NOTA_APROBATORIA;
     }
 
     // Clase interna para almacenar la información de una nota
