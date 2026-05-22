@@ -129,4 +129,42 @@ class RegistroNotasTest {
 
         assertEquals(3.8, promedio, 0.01, "El promedio con una sola nota debe ser esa nota");
     }
+
+    // ========== REQUERIMIENTO 4: No permitir notas duplicadas (misma materia, mismo semestre) ==========
+
+    @Test
+    @DisplayName("CP-012: Debe rechazar nota duplicada en la misma materia y semestre")
+    void debeRechazarNotaDuplicadaEnMismaMateriaYSemestre() {
+        RegistroNotas registro = new RegistroNotas();
+        registro.registrarNota("Miguel Rojas", "Física", 3.5, "2024-1");
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            registro.registrarNota("Miguel Rojas", "Física", 4.0, "2024-1");
+        });
+
+        assertTrue(exception.getMessage().contains("Ya existe una nota registrada para esta materia en este semestre")
+                || exception.getClass().getSimpleName().contains("NotaDuplicada"),
+                "Debe rechazar nota duplicada con mensaje apropiado");
+    }
+
+    @Test
+    @DisplayName("CP-013: Debe aceptar nota en la misma materia pero diferente semestre")
+    void debeAceptarNotaEnMismaMateriaDiferenteSemestre() {
+        RegistroNotas registro = new RegistroNotas();
+        registro.registrarNota("Andrea Ruiz", "Química", 3.2, "2024-1");
+
+        assertDoesNotThrow(() -> {
+            registro.registrarNota("Andrea Ruiz", "Química", 3.5, "2024-2");
+        }, "Debe permitir registrar la misma materia en diferente semestre");
+    }
+
+    @Test
+    @DisplayName("CP-014: Debe aceptar primera nota de una materia")
+    void debeAceptarPrimeraNotaDeUnaMateria() {
+        RegistroNotas registro = new RegistroNotas();
+
+        assertDoesNotThrow(() -> {
+            registro.registrarNota("Fernando Silva", "Estadística", 4.2, "2024-1");
+        }, "Debe permitir registrar la primera nota de una materia");
+    }
 }
