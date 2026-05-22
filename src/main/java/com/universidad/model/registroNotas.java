@@ -47,8 +47,22 @@ public class RegistroNotas {
     }
 
     public double calcularPromedio(String estudiante) {
-        // Sin implementación - Fase RED
-        throw new UnsupportedOperationException("Método no implementado");
+        // Requerimiento 3: Calcular promedio de notas del estudiante
+        double suma = 0.0;
+        int cantidad = 0;
+
+        for (Nota nota : notas) {
+            if (nota.estudiante.equals(estudiante)) {
+                suma += nota.nota;
+                cantidad++;
+            }
+        }
+
+        if (cantidad == 0) {
+            return 0.0;
+        }
+
+        return suma / cantidad;
     }
 
     // Clase interna para almacenar la información de una nota
