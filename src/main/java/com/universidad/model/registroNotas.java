@@ -11,6 +11,7 @@ public class RegistroNotas {
     private static final double NOTA_MAXIMA = 5.0;
     private static final double NOTA_APROBATORIA = 3.0;
     private static final String MENSAJE_ERROR_RANGO = "La nota debe estar entre 0.0 y 5.0";
+    private static final String MENSAJE_ERROR_DUPLICADA = "Ya existe una nota registrada para esta materia en este semestre";
 
     private final List<Nota> notas;
 
@@ -45,14 +46,13 @@ public class RegistroNotas {
     }
 
     private void validarNotaDuplicada(String estudiante, String materia, String semestre) {
-        // Requerimiento 4: No permitir notas duplicadas en misma materia y semestre
-        boolean existe = notas.stream()
+        boolean yaExiste = notas.stream()
                 .anyMatch(nota -> nota.estudiante.equals(estudiante)
                         && nota.materia.equals(materia)
                         && nota.semestre.equals(semestre));
 
-        if (existe) {
-            throw new NotaDuplicadaException("Ya existe una nota registrada para esta materia en este semestre");
+        if (yaExiste) {
+            throw new NotaDuplicadaException(MENSAJE_ERROR_DUPLICADA);
         }
     }
 
