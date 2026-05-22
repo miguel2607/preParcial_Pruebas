@@ -47,22 +47,11 @@ public class RegistroNotas {
     }
 
     public double calcularPromedio(String estudiante) {
-        // Requerimiento 3: Calcular promedio de notas del estudiante
-        double suma = 0.0;
-        int cantidad = 0;
-
-        for (Nota nota : notas) {
-            if (nota.estudiante.equals(estudiante)) {
-                suma += nota.nota;
-                cantidad++;
-            }
-        }
-
-        if (cantidad == 0) {
-            return 0.0;
-        }
-
-        return suma / cantidad;
+        return notas.stream()
+                .filter(nota -> nota.estudiante.equals(estudiante))
+                .mapToDouble(nota -> nota.nota)
+                .average()
+                .orElse(0.0);
     }
 
     // Clase interna para almacenar la información de una nota
