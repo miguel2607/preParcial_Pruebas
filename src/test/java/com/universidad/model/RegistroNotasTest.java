@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Tests para Registro de Notas")
 class RegistroNotasTest {
 
-    // ========== REQUERIMIENTO 1: La nota debe estar entre 0.0 y 5.0 ==========
 
     @Test
     @DisplayName("CP-001: Debe aceptar nota en límite mínimo válido (0.0)")
