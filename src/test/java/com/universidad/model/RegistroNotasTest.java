@@ -61,4 +61,36 @@ class RegistroNotasTest {
 
         assertEquals("La nota debe estar entre 0.0 y 5.0", exception.getMessage());
     }
+
+    // ========== REQUERIMIENTO 2: Determinar si aprueba o reprueba (>= 3.0) ==========
+
+    @Test
+    @DisplayName("CP-006: Debe clasificar nota en el límite de aprobación (3.0) como Aprobada")
+    void debeClasificarNotaEnLimiteAprobacionComoAprobada() {
+        RegistroNotas registro = new RegistroNotas();
+
+        boolean esAprobada = registro.esNotaAprobatoria(3.0);
+
+        assertTrue(esAprobada, "Una nota de 3.0 debe ser aprobatoria");
+    }
+
+    @Test
+    @DisplayName("CP-007: Debe clasificar nota debajo del límite (2.9) como Reprobada")
+    void debeClasificarNotaDebajoDelLimiteComoReprobada() {
+        RegistroNotas registro = new RegistroNotas();
+
+        boolean esAprobada = registro.esNotaAprobatoria(2.9);
+
+        assertFalse(esAprobada, "Una nota de 2.9 debe ser reprobada");
+    }
+
+    @Test
+    @DisplayName("CP-008: Debe clasificar nota aprobatoria alta (4.5) como Aprobada")
+    void debeClasificarNotaAprobatoriaAltaComoAprobada() {
+        RegistroNotas registro = new RegistroNotas();
+
+        boolean esAprobada = registro.esNotaAprobatoria(4.5);
+
+        assertTrue(esAprobada, "Una nota de 4.5 debe ser aprobatoria");
+    }
 }
