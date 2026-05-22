@@ -40,6 +40,11 @@ public class RegistroNotas {
         }
     }
 
+    public boolean esNotaAprobatoria(double nota) {
+        // Requerimiento 2: Aprueba con nota >= 3.0
+        return nota >= 3.0;
+    }
+
     // Clase interna para almacenar la información de una nota
     private static class Nota {
         private final String estudiante;
