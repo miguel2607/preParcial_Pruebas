@@ -49,7 +49,7 @@ La nota debe estar entre **0.0 y 5.0**.
 
 | ID | Requerimiento | Descripción | Precondición | Datos de entrada | Pasos | Resultado esperado | Tipo |
 |----|---------------|-------------|--------------|------------------|-------|-------------------|------|
-| CP-001 | Req 1 | Validar nota en límite mínimo válido | Sistema de registro iniciado | Nota: 0.0, Materia: "Matemáticas", Estudiante: "Juan Pérez" | 1. Ingresar al sistema de registro<br>2. Seleccionar estudiante "Juan Pérez"<br>3. Ingresar materia "Matemáticas"<br>4. Ingresar nota 0.0<br>5. Guardar registro | El sistema acepta la nota 0.0 y muestra mensaje "Nota registrada exitosamente" | Borde |
+| CP-001 | Req 1 | Validar nota en límite mínim<br/>o válido | Sistema de registro iniciado | Nota: 0.0, Materia: "Matemáticas", Estudiante: "Juan Pérez" | 1. Ingresar al sistema de registro<br>2. Seleccionar estudiante "Juan Pérez"<br>3. Ingresar materia "Matemáticas"<br>4. Ingresar nota 0.0<br>5. Guardar registro | El sistema acepta la nota 0.0 y muestra mensaje "Nota registrada exitosamente" | Borde |
 | CP-002 | Req 1 | Validar nota en límite máximo válido | Sistema de registro iniciado | Nota: 5.0, Materia: "Física", Estudiante: "María López" | 1. Ingresar al sistema de registro<br>2. Seleccionar estudiante "María López"<br>3. Ingresar materia "Física"<br>4. Ingresar nota 5.0<br>5. Guardar registro | El sistema acepta la nota 5.0 y muestra mensaje "Nota registrada exitosamente" | Borde |
 | CP-003 | Req 1 | Validar nota válida intermedia | Sistema de registro iniciado | Nota: 3.5, Materia: "Química", Estudiante: "Carlos Gómez" | 1. Ingresar al sistema de registro<br>2. Seleccionar estudiante "Carlos Gómez"<br>3. Ingresar materia "Química"<br>4. Ingresar nota 3.5<br>5. Guardar registro | El sistema acepta la nota 3.5 y muestra mensaje "Nota registrada exitosamente" | Positivo |
 | CP-004 | Req 1 | Validar nota menor al límite mínimo | Sistema de registro iniciado | Nota: -1.0, Materia: "Historia", Estudiante: "Ana Torres" | 1. Ingresar al sistema de registro<br>2. Seleccionar estudiante "Ana Torres"<br>3. Ingresar materia "Historia"<br>4. Ingresar nota -1.0<br>5. Intentar guardar registro | El sistema rechaza la nota y muestra mensaje de error "La nota debe estar entre 0.0 y 5.0" | Negativo |
@@ -63,3 +63,24 @@ La nota debe estar entre **0.0 y 5.0**.
 | CP-012 | Req 4 | Intentar registrar nota duplicada en la misma materia y semestre | Sistema de registro iniciado | Estudiante: "Miguel Rojas" ya tiene nota en "Física" semestre "2024-1" | 1. Ingresar al sistema de registro<br>2. Seleccionar estudiante "Miguel Rojas"<br>3. Seleccionar materia "Física"<br>4. Seleccionar semestre "2024-1"<br>5. Ingresar nota 4.0<br>6. Intentar guardar registro | El sistema rechaza el registro y muestra mensaje "Ya existe una nota registrada para esta materia en este semestre" | Negativo |
 | CP-013 | Req 4 | Registrar nota en la misma materia pero diferente semestre | Sistema de registro iniciado | Estudiante: "Andrea Ruiz" tiene nota en "Química" semestre "2024-1" | 1. Ingresar al sistema de registro<br>2. Seleccionar estudiante "Andrea Ruiz"<br>3. Seleccionar materia "Química"<br>4. Seleccionar semestre "2024-2"<br>5. Ingresar nota 3.5<br>6. Guardar registro | El sistema acepta la nota y muestra mensaje "Nota registrada exitosamente" | Positivo |
 | CP-014 | Req 4 | Registrar primera nota de una materia | Sistema de registro iniciado | Estudiante: "Fernando Silva" sin notas en "Estadística" | 1. Ingresar al sistema de registro<br>2. Seleccionar estudiante "Fernando Silva"<br>3. Seleccionar materia "Estadística"<br>4. Seleccionar semestre "2024-1"<br>5. Ingresar nota 4.2<br>6. Guardar registro | El sistema acepta la nota y muestra mensaje "Nota registrada exitosamente" | Positivo |
+
+---
+
+# Reporte de Cobertura de Código
+
+## Resultado de Tests
+```
+Tests run: 14, Failures: 0, Errors: 0, Skipped: 0
+```
+
+## Cobertura JaCoCo
+
+| Métrica | Cobertura |
+|---------|-----------|
+| **Instrucciones** | **91%** ✅ |
+| **Ramas** | 73% |
+| **Líneas** | 93% |
+| **Métodos** | 100% |
+| **Clases** | 100% |
+
+✅ **Cumple con el objetivo de 85% de cobertura**
